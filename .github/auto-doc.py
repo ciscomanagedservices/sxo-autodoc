@@ -25,13 +25,13 @@ for dir in dirs:
                 with open(path.join(dir,wf)) as f:
                     d = loads(f.read())
                 workflows.append({
-                    'index':i,
+                    'index': i,
                     'name': d['workflow']['name'],
                     'description': d['workflow']['properties']['description'],
-                    'dir':dir
+                    'dir': dir
                 })
 
 output = template.render(workflows=workflows)
 
-with open(path.join(path.dirname(path.dirname(__file__)),'README2.md'),'w', encoding="utf-8") as f:
+with open(path.join(path.dirname(path.dirname(__file__)),'README.md'),'w', encoding="utf-8") as f:
     f.write(output)
