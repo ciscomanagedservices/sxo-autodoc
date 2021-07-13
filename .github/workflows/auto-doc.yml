@@ -1,0 +1,58 @@
+name: auto-doc
+
+# on:
+#   schedule:
+#     - cron: '0 12 * * *' # runs at 12:00 UTC everyday
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Person to greet'
+        required: false
+        default: 'Mona the Octocat'
+      home:
+        description: 'location'
+        required: false
+        default: 'The Octoverse'
+
+  push:
+    paths-ignore:
+      - '**.md'
+      - '**.py'
+      - '.github/**'
+
+
+jobs:
+  auto-doc:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to github runner
+
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7.7' # install the python version needed
+          
+      - name: install python packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install jinja2
+          
+      - name: execute py script # run sj-gobierno.py to get the latest data
+        run: python .github/auto-doc.py $GITHUB_WORKSPACE
+          
+      - name: commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README2.md
+          git commit -m "Regenerating README after last commit"
+          
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main  
