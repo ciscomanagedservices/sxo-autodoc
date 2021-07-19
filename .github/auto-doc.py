@@ -19,17 +19,18 @@ dirs = listdir(sys.argv[1])
 i=0
 for dir in dirs:
         if path.isdir(dir) and dir not in ['.github','.git','templates']:
-            i+=1
             files = listdir(dir)
             for wf in files:
                 with open(path.join(dir,wf)) as f:
                     d = loads(f.read())
-                workflows.append({
-                    'index': i,
-                    'name': d['workflow']['name'],
-                    'description': d['workflow']['properties']['description'],
-                    'dir': dir
-                })
+                if '!#NODOC' not in d['workflow']['properties']['description']:
+                    i+=1
+                    workflows.append({
+                        'index': i,
+                        'name': d['workflow']['name'],
+                        'description': d['workflow']['properties']['description'],
+                        'dir': dir
+                    })
 
 output = template.render(workflows=workflows)
 
