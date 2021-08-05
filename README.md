@@ -14,7 +14,7 @@ AutoDoc creates (and maintains) the README for developers based on a Jinja templ
 
 1. When creating a new repository to commit your SXO workflows/atomic actions to, select [ciscomanagedservices/sxo-autodoc](https://github.com/ciscomanagedservices/sxo-autodoc) as the repository template
 2. This will initialize your new repository with the contents of this repository, i.e. with the `.github` folder and a `README.md` file
-3. In your repository, create a new file called `template.md` within [`/.github/templates/`]((/.github/templates/)) and define your Jinja template. More on Jinja syntax [here](https://jinja.palletsprojects.com/en/3.0.x/templates/).
+3. In your repository, create a new file called `template.md` within [/.github/templates/](/.github/templates/) and define your Jinja template. More on Jinja syntax [here](https://jinja.palletsprojects.com/en/3.0.x/templates/).
     1. For example, you may want to dynamically generate the name of the workflow with each commit, you'd do that by using `{{ workflow['name'] }}` in your template. Similarly, to template workflow descriptions, you'd use `{{ workflow['description'] }}`.
     2. Your template can have a mix of static content (text, images, GIFs etc.) and content that you'd like to be dynamically created from your workflow.
     3. A [sample template](/.github/templates/sample_template.md) is also included in the same directory for your reference.
