@@ -20,7 +20,7 @@ AutoDoc creates (and maintains) the README for developers based on a Jinja templ
     3. A [sample template](/.github/templates/sample_template.md) is also included in the same directory for your reference.
 4. No changes are required on SXO for AutoDoc to work. You'd setup the Git Endpoint for your repository on SXO and commit as you typically do.
 
-💡 **Pro Tip**: Add `!#NODOC` to the description of your workflow before you commit to GitHub to tell AutoDoc not to run. When AutoDoc sees `!#NODOC` in the description, it leaves your README content as is. When you're ready for AutoDoc to do it's thing, simply remove `!#NODOC` from the description before you commit to GitHub and your updates will sync!
+💡 **Pro Tip**: Add `!#NODOC` to the description of your workflow before you commit to GitHub to tell AutoDoc not to run. When AutoDoc sees `!#NODOC` in a workflow's description, it does not update the README with that workflow's content.
 
 ---
 
