@@ -1,5 +1,7 @@
 ## SecureX Orchestrator AutoDoc: Template Git READMEs from Workflows
 
+[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/ciscomanagedservices/sxo-autodoc)
+
 > **NOTE:** While this file will be copied over to any new repository templated off of this repository, its content will be overwritten when a new SecureX Orchestrator (SXO) workflow/atomic action is committed to the repository.
 
 ### Why does AutoDoc exist?
