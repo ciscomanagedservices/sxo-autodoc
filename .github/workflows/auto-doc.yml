@@ -53,8 +53,10 @@ jobs:
           url: "https://raw.githubusercontent.com/ciscomanagedservices/sxo-autodoc/main/.github/templates/sample_template.md"
           method: 'GET'
 
-      - name: Write auto-doc script
-        run: printf $${{ steps.auto-doc-script.outputs.response }} > .github/auto-doc.py
+      - name: Write sample-template
+        run: |
+          line=$(echo $${{ steps.sample-template.outputs.response }} | sed -r 's/%/%%/g')
+          printf -- "$line" >> .github/templates/sample_template.md
           
       - name: execute py script # run sj-gobierno.py to get the latest data
         run: python .github/auto-doc.py $GITHUB_WORKSPACE

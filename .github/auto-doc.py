@@ -21,6 +21,8 @@ for dir in dirs:
         if path.isdir(dir) and dir not in ['.github','.git','templates']:
             files = listdir(dir)
             for wf in files:
+                if '.json' not in wf:
+                    continue
                 with open(path.join(dir,wf)) as f:
                     d = loads(f.read())
                 if '!#NODOC' not in d['workflow']['properties']['description']:
