@@ -32,6 +32,29 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install jinja2
+
+      - name: Get auto-doc script
+        id: auto-doc-script
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: "https://raw.githubusercontent.com/ciscomanagedservices/sxo-autodoc/main/.github/auto-doc.py"
+          method: 'GET'
+
+      - name: Write auto-doc script
+        run: printf $${{ steps.auto-doc-script.outputs.response }} > .github/auto-doc.py
+
+      - name: Create template Directory if does not exist
+        run: mkdir -p .github/templates
+
+      - name: Get sample template
+        id: sample-template
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: "https://raw.githubusercontent.com/ciscomanagedservices/sxo-autodoc/main/.github/templates/sample_template.md"
+          method: 'GET'
+
+      - name: Write auto-doc script
+        run: printf $${{ steps.auto-doc-script.outputs.response }} > .github/auto-doc.py
           
       - name: execute py script # run sj-gobierno.py to get the latest data
         run: python .github/auto-doc.py $GITHUB_WORKSPACE
