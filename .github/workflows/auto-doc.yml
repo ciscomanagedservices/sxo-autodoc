@@ -9,6 +9,8 @@ on:
         default: 'Ignore this field'
 
   push:
+    branches:
+      - main
     paths-ignore:
       - '**.md'
       - '**.py'
